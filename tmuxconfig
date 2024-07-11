@@ -1,0 +1,95 @@
+# setting the prefix from ctrl-b to ctrl-a
+ set -g prefix C-b
+
+# free the original ctrl-b pefix keybinding
+# unbind C-b
+
+# setting the delay between prefix and command
+set -s escape-time 1
+
+# set the base index for windows to 1 instead of 0
+set -g base-index 1
+
+# set the base index for panes to 1 instead of 0
+setw -g pane-base-index 1
+
+# prefix r to reload sourcefile
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+#send ctrl-b to other apps
+bind C-b send-prefix
+
+#splitting windows into panes with | and -
+bind | split-window -h
+bind - split-window -v
+
+# moving between panes with prefix h,j,k,l
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+#enable vi keys,
+setw -g mode-keys vi
+
+#setting up yanking, pasting and copy-mode
+bind Escape copy-mode
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-selection
+bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
+unbind p
+bind p paste-buffer
+
+#moving text to system clipboard
+bind C-c run 'tmux save-buffer - | xclip -i sel clipboard'
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -sel clip -i'
+bind C-v run "tmux set-buffer \"$(xclip -o -sel clipboard)\"; tmux paste-buffer"
+
+# enable mouse
+set -g mouse on 
+ 
+# set the default terminal mode to 256color mode
+set -g default-terminal "screen-256color"
+
+# set the status line's colors
+set -g status-style fg=yellow,bg=purple
+
+# set the color of the window list
+setw -g window-status-style fg=grey,bg=black
+
+# set the color for active window
+setw -g window-status-current-style fg=white,bold,bg=green
+
+
+# color for pane borders
+setw -g pane-border-style fg=green,bg=black
+setw -g pane-active-border-style fg=white,bg=purple
+
+# active pane normal, other shaded out
+setw -g window-style fg=white,bg=black
+setw -g window-active-style bg=color235
+
+# command line
+set -g message-style fg=blue,bold,bg=orange
+
+# setting the left part of status line
+set -g status-left-length 50
+set -g status-left "#[fg=white,bold]Sess: #S#[fg=gold,bold] #I#[fg=black,bold] #P "
+
+# setting the right part of the status line
+set -g status-right "#[fg=white,bold]%d %b %R"
+set -g status-interval 60
+
+# center the window list in the status line
+set -g status-justify centre
+
+# automatically restore last saved environment
+#set -g @continuum-restore 'on'
+
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+run '~/.tmux/plugins/tpm/tpm'
