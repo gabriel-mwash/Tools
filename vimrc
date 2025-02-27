@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-set number
-set scrolloff=12
-
-
-" WHITESPACE
-set wrap
-set tabstop=3
-set shiftwidth=3
-set softtabstop=3
-=======
 " PLUGINS GO HERE ('VIM-PLUG')
 
 call plug#begin()
@@ -35,9 +24,11 @@ set wrap
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
->>>>>>> e225980 (latest config files)
 set expandtab
 set noshiftround
+set breakindent
+
+set scrolloff=10
 set ignorecase
 set hidden
 set clipboard=unnamedplus
@@ -45,27 +36,18 @@ set mouse=a
 set noswapfile
 let mapleader = ","
 
-<<<<<<< HEAD
-=======
 
->>>>>>> e225980 (latest config files)
 " SEARCH
 set incsearch
 set hlsearch
 
+
 " linters setup
 let g:ale_linters = { "python" : ["flake8"],}
 
-<<<<<<< HEAD
-
-" setting the cursor to line in insert mode
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-=======
 " setting the cursor to line in insert mode
 "let &t_SI = "\e[6 q"
 "let &t_EI = "\e[2 q"
->>>>>>> e225980 (latest config files)
 
 "TAB COMPLETION AND CONFIRMATION
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
@@ -103,11 +85,6 @@ nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
-<<<<<<< HEAD
-"COLORSCHEME
-autocmd vimenter * ++nested colorscheme gruvbox
-set background=dark
-=======
 "colorscheme gruvbox
 "let g:gruvbox_transparent_bg = 1
 "highlight Normal guibg=NONE
@@ -120,29 +97,9 @@ set background=dark
 let g:solarized_termtrans = 1
 highlight Normal guibg=NONE ctermbg=NONE
 
->>>>>>> e225980 (latest config files)
 
 "emmet config
 let g:user_emmet_leader_key=','
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 let g:user_emmet_mode='a'
-
-<<<<<<< HEAD
-" PLUGINS GO HERE ('VIM-PLUG')
-call plug#begin()
-Plug 'vim-airline/vim-airline'
-Plug 'neoclide/coc.nvim', {'branch' : 'release'} 
-Plug 'preservim/nerdtree'
-Plug 'morhetz/gruvbox'
-Plug 'Yggdroot/indentLine'
-Plug 'Kristijanhusak/vim-dadbod-ui'
-Plug 'Kristijanhusak/vim-dadbod-completion'
-Plug 'dense-analysis/ale'
-Plug 'mattn/emmet-vim'
-Plug 'alvan/vim-closetag' 
-call plug#end()
-=======
-
-
->>>>>>> e225980 (latest config files)
